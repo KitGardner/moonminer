@@ -8,7 +8,10 @@ export default new Vuex.Store({
     currentCheese: 0,
     totalCheese: 0,
     cheesePerSecond: 0,
-    moonMice: [],
+    autoMiningModifier: 1,
+    cheesePerClick: 1,
+    intervalTime: 1000,
+    upgrades: [],
     isAutoMining: false
   },
   mutations: {
@@ -25,12 +28,20 @@ export default new Vuex.Store({
       state.isAutoMining = autoMining;
     },
 
-    addMoonMouse(state, moonMouse) {
-      state.moonMice.push(moonMouse);
-    },
-
     addAutoMineAmount(state, autoMineAmount) {
       state.cheesePerSecond += autoMineAmount;
+    },
+
+    addClickMineAmount(state, clickMineAmount) {
+      state.cheesePerClick += clickMineAmount;
+    },
+
+    increaseAutoMineMultiple(state, autoMineMultiple) {
+      state.autoMiningModifier *= autoMineMultiple;
+    },
+
+    decreaseAutoMineInterval(state, intervalDecrease) {
+      state.intervalTime /= intervalDecrease;
     }
   },
   actions: {
@@ -46,13 +57,27 @@ export default new Vuex.Store({
       commit("setAutoMine", autoMining)
     },
 
-    addMoonMouse({ dispatch, commit }, moonMouse, state) {
-      commit("addMoonMouse", moonMouse);
-      if (!state.isAutoMining) {
-        commit("setAutoMine", true);
-      }
+    addUpgrade({ dispatch, commit, state }, upgrade) {
+      commit("reduceCheese", upgrade.cost);
+      if (upgrade.type == 'Automatic') {
+        if (!state.isAutoMining) {
+          dispatch("setAutoMine", true);
+        }
 
-      commit("addAutoMineAmount", moonMouse.autoMiningAmount)
+        commit("addAutoMineAmount", upgrade.miningIncrease);
+      } else {
+        commit("addClickMineAmount", upgrade.miningIncrease);
+      }
+    },
+
+    increaseAutoMineMultiple({ dispatch, commit }, multipleUpgrade) {
+      commit("reduceCheese", multipleUpgrade.cost);
+      commit("increaseAutoMineMultiple", multipleUpgrade.multiplierIncrease);
+    },
+
+    decreaseAutoMineInterval({ dispatch, commit }, intervalUpgrade) {
+      commit("reduceCheese", intervalUpgrade.cost);
+      commit("decreaseAutoMineInterval", intervalUpgrade.intervalModifier)
     }
   },
   modules: {

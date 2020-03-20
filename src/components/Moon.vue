@@ -1,7 +1,6 @@
 <template>
   <div>
     <img @click="mine()" class="moon" src="../assets/Moon.png" alt />
-    <button :disabled="totalCheese < 15" @click="startAutoMine()">Buy Alien Robot</button>
   </div>
 </template>
 <script>
@@ -20,19 +19,23 @@ export default {
 
   methods: {
     mine() {
-      console.log("I am mining");
-      this.$store.dispatch("increaseCheeseCount", 1);
+      this.$store.dispatch(
+        "increaseCheeseCount",
+        this.$store.state.cheesePerClick
+      );
     },
 
     startAutoMine() {
       if (!this.autoMiningIntervalId) {
         this.$store.dispatch("setAutoMine", true);
-        this.$store.dispatch("decreaseCheeseCount", 15);
       }
     },
 
     autoMine() {
-      this.$store.dispatch("increaseCheeseCount", 1);
+      this.$store.dispatch(
+        "increaseCheeseCount",
+        this.$store.state.cheesePerSecond * this.$store.state.autoMiningModifier
+      );
     }
   },
 
@@ -43,14 +46,27 @@ export default {
 
     isAutoMining() {
       return this.$store.state.isAutoMining;
+    },
+
+    autoMineInterval() {
+      return this.$store.state.intervalTime;
     }
   },
 
   watch: {
     isAutoMining(mining) {
-      console.log(mining);
       if (!this.autoMiningIntervalId) {
-        this.autoMiningIntervalId = setInterval(this.autoMine, 1000);
+        this.autoMiningIntervalId = setInterval(
+          this.autoMine,
+          this.$store.state.intervalTime
+        );
+      }
+    },
+
+    autoMineInterval(interval) {
+      if (this.autoMiningIntervalId) {
+        clearInterval(this.autoMiningIntervalId);
+        this.autoMiningIntervalId = setInterval(this.autoMine, interval);
       }
     }
   }
