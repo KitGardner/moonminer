@@ -21,7 +21,9 @@ export default {
 
     cheesePerSecond() {
       return (
-        this.$store.state.cheesePerSecond * this.$store.state.autoMiningModifier
+        (this.$store.state.cheesePerSecond *
+          this.$store.state.autoMiningModifier) /
+        (this.$store.state.intervalTime / 1000)
       );
     },
 

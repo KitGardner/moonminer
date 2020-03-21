@@ -1,21 +1,35 @@
 <template>
   <div>
-    <button
-      :disabled="currentCheese < mouseCost"
-      @click="buyMoonMouse()"
-    >Buy MoonMouse {{mouseCost}}</button>
-    <button
-      :disabled="currentCheese < hardenPickCost"
-      @click="buyHardenPick()"
-    >Harden Pick {{hardenPickCost}}</button>
-    <button
-      :disabled="currentCheese < spaceHeaterCost"
-      @click="buySpaceHeater()"
-    >Space Heater {{spaceHeaterCost}}</button>
-    <button
-      :disabled="currentCheese < speedPotionCost"
-      @click="buySpeedPotion()"
-    >Speed Potion {{speedPotionCost}}</button>
+    <ul class="button-list">
+      <li>
+        <button
+          class="list-button"
+          :disabled="currentCheese < mouseCost"
+          @click="buyMoonMouse()"
+        >Buy MoonMouse {{mouseCost}}</button>
+      </li>
+      <li>
+        <button
+          class="list-button"
+          :disabled="currentCheese < hardenPickCost"
+          @click="buyHardenPick()"
+        >Harden Pick {{hardenPickCost}}</button>
+      </li>
+      <li>
+        <button
+          class="list-button"
+          :disabled="currentCheese < spaceHeaterCost"
+          @click="buySpaceHeater()"
+        >Space Heater {{spaceHeaterCost}}</button>
+      </li>
+      <li>
+        <button
+          class="list-button"
+          :disabled="currentCheese < speedPotionCost"
+          @click="buySpeedPotion()"
+        >Speed Potion {{speedPotionCost}}</button>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -87,4 +101,15 @@ export default {
 </script>
 
 <style>
+.button-list {
+  list-style: none;
+  padding: 0px;
+  width: 100%;
+  height: 60vh;
+}
+
+.list-button {
+  width: 100%;
+  height: 10vh;
+}
 </style>

@@ -37,11 +37,15 @@ export default new Vuex.Store({
     },
 
     increaseAutoMineMultiple(state, autoMineMultiple) {
-      state.autoMiningModifier *= autoMineMultiple;
+      state.autoMiningModifier += autoMineMultiple;
     },
 
     decreaseAutoMineInterval(state, intervalDecrease) {
       state.intervalTime /= intervalDecrease;
+    },
+
+    addUpgrade(state, upgrade) {
+      state.upgrades.push(upgrade);
     }
   },
   actions: {
@@ -68,16 +72,20 @@ export default new Vuex.Store({
       } else {
         commit("addClickMineAmount", upgrade.miningIncrease);
       }
+
+      commit("addUpgrade", upgrade);
     },
 
     increaseAutoMineMultiple({ dispatch, commit }, multipleUpgrade) {
       commit("reduceCheese", multipleUpgrade.cost);
       commit("increaseAutoMineMultiple", multipleUpgrade.multiplierIncrease);
+      commit("addUpgrade", multipleUpgrade);
     },
 
     decreaseAutoMineInterval({ dispatch, commit }, intervalUpgrade) {
       commit("reduceCheese", intervalUpgrade.cost);
-      commit("decreaseAutoMineInterval", intervalUpgrade.intervalModifier)
+      commit("decreaseAutoMineInterval", intervalUpgrade.intervalModifier);
+      commit("addUpgrade", intervalUpgrade);
     }
   },
   modules: {

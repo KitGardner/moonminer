@@ -5,7 +5,8 @@ export default class MultiplierUpgrade extends Upgrade {
     super({
       cost: upgradeData.cost,
       name: upgradeData.name,
-      type: upgradeData.type
+      type: upgradeData.type,
+      miningIncrease: upgradeData.multiplierIncrease
     });
 
     this.multiplierIncrease = upgradeData.multiplierIncrease;

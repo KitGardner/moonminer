@@ -5,8 +5,12 @@ export default class SpaceHeater extends MultiplierUpgrade {
     super({
       cost: cost,
       name: "Space Heater",
-      type: "Automatic",
+      type: "AutoMineMultiplier",
       multiplierIncrease: 2
     });
+
+    super.calculateIncrease = (quantity) => {
+      return "X" + (quantity * this.multiplierIncrease + 1).toString();
+    }
   }
 }

@@ -5,9 +5,13 @@ export default class IntervalUpgrade extends Upgrade {
     super({
       cost: upgradeData.cost,
       name: upgradeData.name,
-      type: upgradeData.type
+      type: upgradeData.type,
+      miningIncrease: upgradeData.intervalModifier
     });
 
     this.intervalModifier = upgradeData.intervalModifier;
+    super.calculateIncrease = function (quantity) {
+      return "/" + (Math.pow(this.miningIncrease, quantity)).toString();
+    }
   }
 }

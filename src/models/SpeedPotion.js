@@ -5,7 +5,7 @@ export default class SpeedPoint extends IntervalUpgrade {
     super({
       cost: cost,
       name: "Speed Potion",
-      type: "Automatic",
+      type: "IntervalDecreaseModifier",
       intervalModifier: 2
     })
   }
