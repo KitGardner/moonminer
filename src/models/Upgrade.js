@@ -3,8 +3,9 @@ export default class Upgrade {
     this.name = upgradeData.name;
     this.cost = upgradeData.cost;
     this.type = upgradeData.type;
+    this.typeImgUrl = upgradeData.typeImgUrl;
     this.miningIncrease = upgradeData.miningIncrease;
-    this.imgUrl = "http://placehold.it/50x50"
+    this.imgUrl = upgradeData.imgUrl;
     this.calculateIncrease = (quantity) => {
       return "+" + (quantity * this.miningIncrease).toString();
     }

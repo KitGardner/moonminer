@@ -6,6 +6,8 @@ export default class MoonMouse extends Upgrade {
       cost: cost,
       name: "Moon Mouse",
       type: "Automatic",
+      imgUrl: "moonMouseImg.png",
+      typeImgUrl: "automaticUpgrade.png",
       miningIncrease: 1
     });
   }

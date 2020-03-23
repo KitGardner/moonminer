@@ -6,7 +6,9 @@ export default class HardenCheesePick extends Upgrade {
       cost: cost,
       name: "Harden Cheese Pick",
       type: "Manual",
-      miningIncrease: 2
+      miningIncrease: 2,
+      imgUrl: "hardenPickImg.png",
+      typeImgUrl: "manualUpgradeImg.png"
     })
   }
 }

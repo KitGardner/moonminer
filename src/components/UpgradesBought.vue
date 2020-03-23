@@ -9,10 +9,12 @@
       </tr>
       <tr v-for="upgrade in upgrades" :key="upgrade.name">
         <td>
-          <img :src="upgrade.imgUrl" alt />
+          <img class="upgrade-image" :src="upgrade.imgUrl" alt />
         </td>
         <td>{{upgrade.quantity}}</td>
-        <td>{{upgrade.type}}</td>
+        <td>
+          <img class="upgrade-image" :src="upgrade.typeImgUrl" alt />
+        </td>
         <td>{{upgrade.calculateIncrease(upgrade.quantity)}}</td>
       </tr>
     </table>
@@ -36,6 +38,7 @@ export default {
             imgUrl: upgrade.imgUrl,
             quantity: 1,
             type: upgrade.type,
+            typeImgUrl: upgrade.typeImgUrl,
             miningIncrease: upgrade.miningIncrease,
             calculateIncrease: upgrade.calculateIncrease
           };
@@ -49,4 +52,8 @@ export default {
 </script>
 
 <style>
+.upgrade-image {
+  height: 50px;
+  width: 50px;
+}
 </style>

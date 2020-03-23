@@ -6,7 +6,9 @@ export default class IntervalUpgrade extends Upgrade {
       cost: upgradeData.cost,
       name: upgradeData.name,
       type: upgradeData.type,
-      miningIncrease: upgradeData.intervalModifier
+      miningIncrease: upgradeData.intervalModifier,
+      imgUrl: upgradeData.imgUrl,
+      typeImgUrl: upgradeData.typeImgUrl
     });
 
     this.intervalModifier = upgradeData.intervalModifier;

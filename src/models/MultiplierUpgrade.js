@@ -6,7 +6,9 @@ export default class MultiplierUpgrade extends Upgrade {
       cost: upgradeData.cost,
       name: upgradeData.name,
       type: upgradeData.type,
-      miningIncrease: upgradeData.multiplierIncrease
+      miningIncrease: upgradeData.multiplierIncrease,
+      imgUrl: upgradeData.imgUrl,
+      typeImgUrl: upgradeData.typeImgUrl
     });
 
     this.multiplierIncrease = upgradeData.multiplierIncrease;

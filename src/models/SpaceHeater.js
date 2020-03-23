@@ -6,6 +6,8 @@ export default class SpaceHeater extends MultiplierUpgrade {
       cost: cost,
       name: "Space Heater",
       type: "AutoMineMultiplier",
+      imgUrl: "spaceHeaterImg.png",
+      typeImgUrl: "gatherRateUpgradeImg.png",
       multiplierIncrease: 2
     });
 
